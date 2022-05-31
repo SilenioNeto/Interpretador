@@ -51,19 +51,18 @@ public class Metodos {
 	}
 
 	public static void validateCommand() {
+		int z = 0;
 		for(int x=0; x<commands.length; x++) {
-			if(command.equals(commands[x])) {
+			
+			while(command.equals(commands[x])) {
 				System.out.println("Solicited command:" + command);
-			}else {
-				//------------- RESOLVER -------------
-			}
+				z++;
+				break;
+			}			
 		}
-		/* ----------- RESOLVER------------------
-		for(int y=0; y<sendedCommand.length;y++) {
-			sendedCommand[y] = sendedCommand[y] + command;
-			System.out.println(sendedCommand[y]);
+		if(z==0) {
+		System.out.println("\r Command not found");
 		}
-		 */
 	}
 
 	public static void calculate() {

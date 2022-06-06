@@ -8,7 +8,7 @@ public class Metodos {
 	public static String[] sendedCommand = new String[100];
 	public static char[] chars = new char[100];
 
-	public static String[] commands= {"SOME","SOMA","SOMAR","DIVIDIR","DIVIDA","SUBTRAIR","SUBTRAIA","MULTIPLICAR","MULTIPLIQUE","MATRIZ", "ORDENAR"};
+	public static String[] commands= {"SOME","SOMA","SOMAR","DIVIDIR","DIVIDA","SUBTRAIR","SUBTRAIA","MULTIPLICAR","MULTIPLIQUE","MATRIZ", "ORDENAR","LIGAR","LED","VENTILADOR"};
 	public static String[] scommand= {};
 
 	public static String[] readCommand() {
@@ -52,10 +52,10 @@ public class Metodos {
 		System.out.println("*=========================*");
 		System.out.println("\s\s\s\sAccepted commands: ");
 		for(String showCommands : commands) {
-			System.out.println("\s\s\sº"+showCommands);
+			System.out.println("\s\s\sï¿½"+showCommands);
 		}
 		System.out.println("*=========================*");
-		System.out.println("If send command Matriz use (colum,line,reason,first number of reason");
+		System.out.println("If send command Matriz use (colum,line,reason,first number of reason)");
 		System.out.println("*=========================*");
 	}
 
@@ -65,6 +65,20 @@ public class Metodos {
 
 			while(scommand[0].equals(commands[x])) {
 				System.out.println("Solicited command:" + scommand[0]);
+				z++;
+				break;
+			}			
+		}
+		if(z==0) {
+			System.out.println("\r Command not found");
+		}
+	}
+	public static void validateSecondCommand() {
+		int z = 0;
+		for(int x=0; x<commands.length; x++) {
+
+			while(scommand[1].equals(commands[x])) {
+				System.out.println("Solicited command:" + scommand[1]);
 				z++;
 				break;
 			}			
@@ -133,39 +147,23 @@ public class Metodos {
 			print(matriz);
 
 			break;
- // PROBLEMAO AQUI
-		case "ORDENAR":
-			int scommandlenght = scommand.length;
-			int[] vetor = new int[scommandlenght];
-			for(int x=1; x< vetor.length;x++){
-				for(int i = 0; i < vetor.length; i++){
-					int number = Integer.parseInt(scommand[x]);
-					vetor[i] = number;
-					System.out.println(vetor[i]);
+		case "LIGAR":
+			validateSecondCommand();
+			String secondCommand = scommand[1];
+			System.out.println(secondCommand);
+			switch (secondCommand) {
+			case "LED":
+
+				for(int x = 2;x<scommand.length;x++) {		
+					int led = Integer.parseInt(scommand[x]);
+					System.out.println("Turned on led: "+ led);
 				}
+				break;
+			
+			case "VENTILADOR":
+				System.out.println("Turned on the fan");
+				break;
 			}
-			//BUBBLE SORT O(N^2)
-			int aux;
-			for(int i = 0; i < vetor.length; i++){ // O(N)
-				for(int j = i + 1; j < vetor.length; j++){ //O(N)
-					if (vetor[i] > vetor[j]){
-						aux = vetor[j];
-						vetor[j] = vetor[i];
-						vetor[i] = aux;
-					}
-				}
-			}
-
-
-
-			System.out.println("Vetor ordenado");
-			for(int i = 0; i < vetor.length; i++){
-				System.out.println(vetor[i]);
-			}
-
-
-
-			break;
 		}
 	}
 
